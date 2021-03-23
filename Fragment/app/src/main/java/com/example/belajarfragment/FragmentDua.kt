@@ -7,35 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 
-class FragmentSatu : Fragment() {
+class FragmentDua : Fragment() {
 
-    /*override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }*/
-
-    lateinit var btnFragment1: Button
+    lateinit var btnFragment2: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_satu, container, false)
+        return inflater.inflate(R.layout.fragment_dua, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val fragmentDua = FragmentDua()
+        val fragmentSatu = FragmentSatu()
 
-        btnFragment1 = view.findViewById(R.id.btn_fragment1)
-        btnFragment1.setOnClickListener{
+        btnFragment2 = view.findViewById(R.id.btn_fragment2)
+        btnFragment2.setOnClickListener {
             fragmentManager?.beginTransaction()?.apply {
-                replace(R.id.container, fragmentDua, FragmentDua::class.java.simpleName)
+                replace(R.id.container, fragmentSatu, FragmentSatu::class.java.simpleName)
                     .addToBackStack(null)
                     .commit()
             }
