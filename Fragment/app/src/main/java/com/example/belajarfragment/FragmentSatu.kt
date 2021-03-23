@@ -34,6 +34,16 @@ class FragmentSatu : Fragment() {
 
         btnFragment1 = view.findViewById(R.id.btn_fragment1)
         btnFragment1.setOnClickListener{
+
+            //Menggunakan Bundel
+            val bundle = Bundle()
+            bundle.putString(FragmentDua.EXTRA_NAME, "Name Data dari Fragment1")
+
+            //Menggunakan Argunemts
+            val desc = "Desc Data dari Fragment 1"
+            fragmentDua.arguments = bundle
+            fragmentDua.desc = desc
+
             fragmentManager?.beginTransaction()?.apply {
                 replace(R.id.container, fragmentDua, FragmentDua::class.java.simpleName)
                     .addToBackStack(null)

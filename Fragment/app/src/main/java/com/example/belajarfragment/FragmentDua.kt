@@ -6,10 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 
 class FragmentDua : Fragment() {
 
     lateinit var btnFragment2: Button
+    lateinit var tvName: TextView
+    lateinit var tvDesc: TextView
+    var desc: String? = null
+
+    companion object{
+        val EXTRA_NAME = "extra_name"
+        val EXTRA_DESC = "extra_desc"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +33,8 @@ class FragmentDua : Fragment() {
 
         val fragmentSatu = FragmentSatu()
 
+        tvName = view.findViewById(R.id.tv_name)
+        tvDesc = view.findViewById(R.id.tv_desc)
         btnFragment2 = view.findViewById(R.id.btn_fragment2)
         btnFragment2.setOnClickListener {
             fragmentManager?.beginTransaction()?.apply {
@@ -31,6 +42,21 @@ class FragmentDua : Fragment() {
                     .addToBackStack(null)
                     .commit()
             }
+        }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        if (savedInstanceState != null) {
+            val description = savedInstanceState.getString(EXTRA_DESC)
+            desc = description
+        }
+
+        if (arguments != null) {
+            val name = arguments?.getString(EXTRA_NAME)
+            tvName.text = name
+            tvDesc.text = desc
         }
     }
 }
